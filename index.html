@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Enchant!</title>
+    <script charset="utf-8" src="enchant.js"></script>
+  </head>
+  <body>
+    <script charset="utf-8">
+      enchant();
+      var game = new Core(320, 320);
+      game.preload('chara1.png');
+      game.fps = 20;
+
+      game.keybind(37, 'left');
+      game.keybind(38, 'up');
+      game.keybind(39, 'right');
+      game.keybind(40, 'down');
+
+
+      game.onload = function() {
+        var bear = new Sprite(32, 32);
+        bear.image = game.assets['chara1.png'];
+        game.rootScene.addChild(bear);
+        bear.frame = [6,6,7,7];
+
+        bear.tl.moveBy(288, 0, 90) // move right
+        .scaleTo(-1,1,10) // turn left
+        .moveBy(-288,0,90) // move left
+        .scaleTo(1,1,10)
+        .loop();
+      };
+      game.start();
+    </script>
+  </body>
+</html>
